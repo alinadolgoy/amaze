@@ -61,7 +61,7 @@ function App() {
   const [newExReps, setNewExReps] = useState(5);
   const [newExRest, setNewExRest] = useState(90);
 
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<any>(null);
 
   // --- AUDIO SYNTHESIS ENGINE ---
   const playSoundTone = (type: 'tick' | 'chime' | 'success') => {
@@ -325,7 +325,7 @@ function App() {
 
   // --- STATS CALCULATIONS ---
   const totalVolume = exercises.reduce((acc, ex) => {
-    const completedReps = ex.completedSets.reduce((sum, reps) => sum + (reps || 0), 0);
+    const completedReps = ex.completedSets.reduce<number>((sum, reps) => sum + (reps || 0), 0);
     return acc + (completedReps * ex.weight);
   }, 0);
 
